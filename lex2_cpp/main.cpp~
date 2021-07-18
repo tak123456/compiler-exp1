@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+extern int yylval;
+extern vector<string> string_table;
+extern int yylex();
+main()
+{
+  int i;
+
+  while (i=yylex()) {
+    switch(i) {
+    case 10: { 
+      cout << "IDNUM, " << string_table[yylval] << "\n";
+      break;}
+    case 1: {
+      cout << "STRINGCONST, " << string_table[yylval] << "\n";
+      break;}
+    case 2: {
+      cout << "INTEGERCONST, " << yylval << "\n";
+      break;}
+    case 3: {
+      cout << "CHARCONST, " << string_table[yylval] << "\n"; 
+      break;}
+    case 4: {
+      cout << "PLUSNUM\n"; break;}
+    case 5: {
+      cout << "TIMESNUM\n"; break;}
+    case 6: { cout << "IFNUM\n"; break;}
+    case 7: { cout << "THENNUM\n"; break;}
+    case 8: { cout << "ELSENUM\n"; break;}
+    case 9: { cout << "EQUALNUM\n"; break;}
+    case 11: { cout << "PROGRAMNUM\n"; break;}
+    case 12: { cout << "ISNUM\n"; break;}
+    case 13: { cout << "BEGINNUM\n"; break;}
+    case 14: { cout << "ENDNUM\n"; break;}
+    default: {cout << "Unknown token: " << i << "\n";}
+    }
+  }
+}
+
+
